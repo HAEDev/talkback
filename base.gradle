@@ -6,15 +6,19 @@ def rootDir = "$projectDir/../../.."
 buildscript {
     repositories {
         mavenCentral()
+        google()
+        jcenter()
     }
     dependencies {
         classpath 'org.aspectj:aspectjtools:1.8.1'
-        classpath 'com.android.tools.build:gradle:1.5.0'
+        classpath 'com.android.tools.build:gradle:3.0.1'
     }
 }
 
 repositories {
     mavenCentral()
+    google()
+    jcenter()
     maven {
         // TODO: Remove this after support library v24 public release.
         url "$rootDir/prebuilts/fullsdk/extras/android/m2repository"
@@ -26,22 +30,19 @@ android {
         exclude 'LICENSE'
         exclude 'README'
     }
-    compileSdkVersion "android-24"
-    buildToolsVersion '22.0.1'
+    compileSdkVersion 25
+    buildToolsVersion '26.0.2'
     defaultConfig {
-        minSdkVersion 16
-        targetSdkVersion 24
+        minSdkVersion 23
+        targetSdkVersion 23
+        flavorDimensions "versionCode"
         testInstrumentationRunner 'android.test.InstrumentationTestRunner'
-    }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_7
-        targetCompatibility JavaVersion.VERSION_1_7
     }
     buildTypes {
         release {
             minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'),    \
-               "$projectDir/src/main/proguard-project.txt"
+            proguardFiles getDefaultProguardFile('proguard-android.txt'),     \
+                "$projectDir/src/main/proguard-project.txt"
             signingConfig signingConfigs.debug
         }
     }
